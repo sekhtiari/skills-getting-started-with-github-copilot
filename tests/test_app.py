@@ -3,15 +3,17 @@ from fastapi.testclient import TestClient
 from src.app import app, activities
 
 client = TestClient(app)
+INITIAL_ACTIVITY_PARTICIPANTS = {
+    name: list(activity["participants"])
+    for name, activity in activities.items()
+}
 
 @pytest.fixture(autouse=True)
 def reset_activities():
     # Reset the in-memory activities before each test
-    for activity in activities.values():
+    for name, activity in activities.items():
         # Remove all participants except the initial ones
-        if 'initial_participants' not in activity:
-            activity['initial_participants'] = list(activity['participants'])
-        activity['participants'] = list(activity['initial_participants'])
+        activity["participants"] = list(INITIAL_ACTIVITY_PARTICIPANTS[name])
 
 
 def test_get_activities():
