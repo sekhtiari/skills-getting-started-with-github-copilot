@@ -125,6 +125,10 @@ section h3 {
   transform: scale(1.2);
 }
 
+.delete-btn:focus-visible {
+  outline: 2px solid #1a237e;
+  outline-offset: 2px;
+}
 .no-participants {
   font-size: 13px;
   color: #999;
