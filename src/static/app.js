@@ -57,10 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
             participantEmail.textContent = email;
 
             const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
             deleteButton.className = "delete-btn";
             deleteButton.dataset.activity = name;
             deleteButton.dataset.email = email;
             deleteButton.title = "Unregister";
+            deleteButton.setAttribute("aria-label", `Unregister ${email} from ${name}`);
             deleteButton.innerHTML = "&#x1F5D1;";
 
             participantItem.appendChild(participantEmail);
